@@ -39,17 +39,25 @@
             this.p1Cooldown = new System.Windows.Forms.Label();
             this.p2Cooldown = new System.Windows.Forms.Label();
             this.borderCount = new System.Windows.Forms.Label();
+            this.titleLabel = new System.Windows.Forms.Label();
+            this.logoBox = new System.Windows.Forms.PictureBox();
+            this.p2Label = new System.Windows.Forms.Label();
+            this.p2Control = new System.Windows.Forms.Label();
+            this.p1Label = new System.Windows.Forms.Label();
+            this.p1Control = new System.Windows.Forms.Label();
+            this.startLabel = new System.Windows.Forms.Label();
+            this.infoLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.p1L1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1L3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1L2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p2L3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p2L1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p2L2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logoBox)).BeginInit();
             this.SuspendLayout();
             // 
             // gameTimer
             // 
-            this.gameTimer.Enabled = true;
             this.gameTimer.Interval = 20;
             this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
             // 
@@ -124,9 +132,10 @@
             // 
             // p2Cooldown
             // 
+            this.p2Cooldown.BackColor = System.Drawing.Color.Transparent;
             this.p2Cooldown.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p2Cooldown.ForeColor = System.Drawing.Color.Red;
-            this.p2Cooldown.Location = new System.Drawing.Point(479, 12);
+            this.p2Cooldown.Location = new System.Drawing.Point(489, 12);
             this.p2Cooldown.Name = "p2Cooldown";
             this.p2Cooldown.Size = new System.Drawing.Size(53, 28);
             this.p2Cooldown.TabIndex = 7;
@@ -139,7 +148,85 @@
             this.borderCount.Name = "borderCount";
             this.borderCount.Size = new System.Drawing.Size(206, 28);
             this.borderCount.TabIndex = 8;
-            this.borderCount.Text = "Border closing in..";
+            // 
+            // titleLabel
+            // 
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.BackColor = System.Drawing.Color.Transparent;
+            this.titleLabel.Location = new System.Drawing.Point(230, 112);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(0, 34);
+            this.titleLabel.TabIndex = 9;
+            // 
+            // logoBox
+            // 
+            this.logoBox.BackColor = System.Drawing.Color.Transparent;
+            this.logoBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.logoBox.Location = new System.Drawing.Point(234, 163);
+            this.logoBox.Name = "logoBox";
+            this.logoBox.Size = new System.Drawing.Size(271, 276);
+            this.logoBox.TabIndex = 10;
+            this.logoBox.TabStop = false;
+            // 
+            // p2Label
+            // 
+            this.p2Label.AutoSize = true;
+            this.p2Label.BackColor = System.Drawing.Color.Transparent;
+            this.p2Label.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p2Label.Location = new System.Drawing.Point(566, 184);
+            this.p2Label.Name = "p2Label";
+            this.p2Label.Size = new System.Drawing.Size(0, 18);
+            this.p2Label.TabIndex = 11;
+            // 
+            // p2Control
+            // 
+            this.p2Control.AutoSize = true;
+            this.p2Control.BackColor = System.Drawing.Color.Transparent;
+            this.p2Control.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p2Control.Location = new System.Drawing.Point(511, 235);
+            this.p2Control.Name = "p2Control";
+            this.p2Control.Size = new System.Drawing.Size(0, 15);
+            this.p2Control.TabIndex = 12;
+            // 
+            // p1Label
+            // 
+            this.p1Label.AutoSize = true;
+            this.p1Label.BackColor = System.Drawing.Color.Transparent;
+            this.p1Label.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p1Label.Location = new System.Drawing.Point(90, 184);
+            this.p1Label.Name = "p1Label";
+            this.p1Label.Size = new System.Drawing.Size(0, 18);
+            this.p1Label.TabIndex = 13;
+            // 
+            // p1Control
+            // 
+            this.p1Control.AutoSize = true;
+            this.p1Control.BackColor = System.Drawing.Color.Transparent;
+            this.p1Control.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p1Control.Location = new System.Drawing.Point(46, 235);
+            this.p1Control.Name = "p1Control";
+            this.p1Control.Size = new System.Drawing.Size(0, 15);
+            this.p1Control.TabIndex = 14;
+            // 
+            // startLabel
+            // 
+            this.startLabel.AutoSize = true;
+            this.startLabel.BackColor = System.Drawing.Color.Transparent;
+            this.startLabel.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startLabel.Location = new System.Drawing.Point(233, 459);
+            this.startLabel.Name = "startLabel";
+            this.startLabel.Size = new System.Drawing.Size(0, 18);
+            this.startLabel.TabIndex = 15;
+            // 
+            // infoLabel
+            // 
+            this.infoLabel.AutoSize = true;
+            this.infoLabel.BackColor = System.Drawing.Color.Transparent;
+            this.infoLabel.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoLabel.Location = new System.Drawing.Point(233, 477);
+            this.infoLabel.Name = "infoLabel";
+            this.infoLabel.Size = new System.Drawing.Size(0, 18);
+            this.infoLabel.TabIndex = 16;
             // 
             // TankShowdown
             // 
@@ -147,6 +234,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(700, 700);
+            this.Controls.Add(this.infoLabel);
+            this.Controls.Add(this.startLabel);
+            this.Controls.Add(this.p1Control);
+            this.Controls.Add(this.p1Label);
+            this.Controls.Add(this.p2Control);
+            this.Controls.Add(this.p2Label);
+            this.Controls.Add(this.logoBox);
+            this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.borderCount);
             this.Controls.Add(this.p2Cooldown);
             this.Controls.Add(this.p1Cooldown);
@@ -162,6 +257,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(10, 8, 10, 8);
             this.Name = "TankShowdown";
+            this.Load += new System.EventHandler(this.TankShowdown_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.TankShowdown_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TankShowdown_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TankShowdown_KeyUp);
@@ -171,7 +267,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.p2L3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p2L1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p2L2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logoBox)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -187,6 +285,14 @@
         private System.Windows.Forms.Label p1Cooldown;
         private System.Windows.Forms.Label p2Cooldown;
         private System.Windows.Forms.Label borderCount;
+        private System.Windows.Forms.Label titleLabel;
+        private System.Windows.Forms.PictureBox logoBox;
+        private System.Windows.Forms.Label p2Label;
+        private System.Windows.Forms.Label p2Control;
+        private System.Windows.Forms.Label p1Label;
+        private System.Windows.Forms.Label p1Control;
+        private System.Windows.Forms.Label startLabel;
+        private System.Windows.Forms.Label infoLabel;
     }
 }
 

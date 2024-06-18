@@ -130,4 +130,7 @@
   <data name="skull_crossbones_skeleton_death_svg_png_icon_download_12_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\skull-crossbones-skeleton-death-svg-png-icon-download-12-min.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Tank_Showdown_transparent_removebg_preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tank_Showdown_transparent-removebg-preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

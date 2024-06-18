@@ -75,90 +75,143 @@ namespace TankShowdown
 
         public TankShowdown()
         {
+
             InitializeComponent();
-            DrawMap1();
-            powerUpWatch.Start();
+            titleLabel.Text = "Tank Showdown";
+            Refresh();
         }
 
         private void TankShowdown_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.FillRectangle(blueBrush, player1);
-            e.Graphics.FillRectangle(redBrush, player2);
+            if (gameTimer.Enabled == false)
+            {
+                titleLabel.Text = "Tank Showdown";
+                p1Label.Text = "Player 1";
+                p2Label.Text = "Player 2";
+                p2Control.Text = "Arrows to move, L to shoot";
+                p1Control.Text = "W, A, S, D to move, R to shoot";
+                startLabel.Text = "Press space to start, ESC to exit";
 
-            e.Graphics.FillRectangle(blueBrush, player1Cannon);
-            e.Graphics.FillRectangle(redBrush, player2Cannon);
+                p1L1.Visible = false;
+                p1L2.Visible = false;
+                p1L3.Visible = false;
+                p2L1.Visible = false;
+                p2L2.Visible = false;
+                p2L3.Visible = false;
+                p2Cooldown.Visible = false;
+                p1Cooldown.Visible = false;
+                borderCount.Visible = false;
 
-            for (int i = 0; i < bullets.Count; i++)
-            {
-                e.Graphics.FillEllipse(greyBrush, bullets[i]);
-            }
+                infoLabel.Visible = true;
+                p1Label.Visible = true;
+                p2Label.Visible = true;
+                p1Control.Visible = true;
+                p2Control.Visible = true;
+                startLabel.Visible = true;
+                titleLabel.Visible = true;
 
-            for (int i = 0; i < maze.Count; i++)
-            {
-                e.Graphics.FillRectangle(mazeBrush, maze[i]);
+                logoBox.BackgroundImage = Properties.Resources.Tank_Showdown_transparent_removebg_preview;
             }
-            for (int i = 0; i < damagePowerUp.Count; i++)
+            else
             {
-                e.Graphics.DrawImage(Properties.Resources.skull_crossbones_skeleton_death_svg_png_icon_download_12_min, damagePowerUp[i]);
-            }
-            for (int i = 0; i < speedPowerUp.Count; i++)
-            {
-                e.Graphics.DrawImage(Properties.Resources.lightning_png_161_min, speedPowerUp[i]);
-            }
+                p1L1.Visible = true;
+                p1L2.Visible = true;
+                p1L3.Visible = true;
+                p2L1.Visible = true;
+                p2L2.Visible = true;
+                p2L3.Visible = true;
+                p2Cooldown.Visible = true;
+                p1Cooldown.Visible = true;
+                borderCount.Visible = true;
 
-            e.Graphics.DrawRectangle(borderPen, border);
-            p2Cooldown.Text = $"{player2Cooldown}";
-            p1Cooldown.Text = $"{player1Cooldown}";
-            borderCount.Text = $"Border closing in... {borderTime}";
+                infoLabel.Visible = false;
+                p1Label.Visible = false;
+                p2Label.Visible = false;
+                p1Control.Visible = false;
+                p2Control.Visible = false;
+                startLabel.Visible = false;
+                titleLabel.Visible = false;
 
-            if (p1Lives == 3)
-            {
-                p1L1.BackgroundImage = blueHeart;
-                p1L2.BackgroundImage = blueHeart;
-                p1L3.BackgroundImage = blueHeart;
-            }
-            else if (p1Lives == 2)
-            {
-                p1L1.BackgroundImage = blueHeart;
-                p1L2.BackgroundImage = blueHeart;
-                p1L3.BackgroundImage = null;
-            }
-            else if (p1Lives == 1)
-            {
-                p1L1.BackgroundImage = blueHeart;
-                p1L2.BackgroundImage = null;
-                p1L3.BackgroundImage = null;
-            }
-            else if (p1Lives == 0)
-            {
-                p1L1.BackgroundImage = null;
-                p1L2.BackgroundImage = null;
-                p1L3.BackgroundImage = null;
-            }
+                p2Cooldown.Text = $"{player2Cooldown}";
+                p1Cooldown.Text = $"{player1Cooldown}";
+                borderCount.Text = $"Border closing in... {borderTime}";
+                
 
-            if (p2Lives == 3)
-            {
-                p2L1.BackgroundImage = redHeart;
-                p2L2.BackgroundImage = redHeart;
-                p2L3.BackgroundImage = redHeart;
-            }
-            else if (p2Lives == 2)
-            {
-                p2L1.BackgroundImage = redHeart;
-                p2L2.BackgroundImage = redHeart;
-                p2L3.BackgroundImage = null;
-            }
-            else if (p2Lives == 1)
-            {
-                p2L1.BackgroundImage = redHeart;
-                p2L2.BackgroundImage = null;
-                p2L3.BackgroundImage = null;
-            }
-            else if (p2Lives == 0)
-            {
-                p2L1.BackgroundImage = null;
-                p2L2.BackgroundImage = null;
-                p2L3.BackgroundImage = null;
+                logoBox.BackgroundImage = null;
+
+                e.Graphics.FillRectangle(blueBrush, player1);
+                e.Graphics.FillRectangle(redBrush, player2);
+                e.Graphics.FillRectangle(blueBrush, player1Cannon);
+                e.Graphics.FillRectangle(redBrush, player2Cannon);
+                e.Graphics.DrawRectangle(borderPen, border);
+
+                for (int i = 0; i < bullets.Count; i++)
+                {
+                    e.Graphics.FillEllipse(greyBrush, bullets[i]);
+                }
+
+                for (int i = 0; i < maze.Count; i++)
+                {
+                    e.Graphics.FillRectangle(mazeBrush, maze[i]);
+                }
+                for (int i = 0; i < damagePowerUp.Count; i++)
+                {
+                    e.Graphics.FillRectangle(damageBrush, damagePowerUp[i]);
+                }
+                for (int i = 0; i < speedPowerUp.Count; i++)
+                {
+                    e.Graphics.FillRectangle(speedBrush, speedPowerUp[i]);
+                }
+
+                if (p1Lives == 3)
+                {
+                    p1L1.BackgroundImage = blueHeart;
+                    p1L2.BackgroundImage = blueHeart;
+                    p1L3.BackgroundImage = blueHeart;
+                }
+                else if (p1Lives == 2)
+                {
+                    p1L1.BackgroundImage = blueHeart;
+                    p1L2.BackgroundImage = blueHeart;
+                    p1L3.BackgroundImage = null;
+                }
+                else if (p1Lives == 1)
+                {
+                    p1L1.BackgroundImage = blueHeart;
+                    p1L2.BackgroundImage = null;
+                    p1L3.BackgroundImage = null;
+                }
+                else if (p1Lives == 0)
+                {
+                    p1L1.BackgroundImage = null;
+                    p1L2.BackgroundImage = null;
+                    p1L3.BackgroundImage = null;
+                }
+
+                if (p2Lives == 3)
+                {
+                    p2L1.BackgroundImage = redHeart;
+                    p2L2.BackgroundImage = redHeart;
+                    p2L3.BackgroundImage = redHeart;
+                }
+                else if (p2Lives == 2)
+                {
+                    p2L1.BackgroundImage = redHeart;
+                    p2L2.BackgroundImage = redHeart;
+                    p2L3.BackgroundImage = null;
+                }
+                else if (p2Lives == 1)
+                {
+                    p2L1.BackgroundImage = redHeart;
+                    p2L2.BackgroundImage = null;
+                    p2L3.BackgroundImage = null;
+                }
+                else if (p2Lives == 0)
+                {
+                    p2L1.BackgroundImage = null;
+                    p2L2.BackgroundImage = null;
+                    p2L3.BackgroundImage = null;
+                }
             }
         }
 
@@ -195,6 +248,18 @@ namespace TankShowdown
                     break;
                 case Keys.R:
                     rPressed = true;
+                    break;
+                case Keys.Space:
+                    if (gameTimer.Enabled == false)
+                    {
+                        InitializeGame();
+                    }
+                    break;
+                case Keys.Escape:
+                    if (gameTimer.Enabled == false)
+                    {
+                        Application.Exit();
+                    }
                     break;
             }
         }
@@ -660,13 +725,13 @@ namespace TankShowdown
             //End game if a player reaches 0 lives.
             if (p1Lives <= 0)
             {
-                gameTimer.Stop();
+                gameTimer.Enabled = false;
                 winner = "Player 2 wins!";
                 loser = "Player 1 loses!";
             }
             else if (p2Lives <= 0)
             {
-                gameTimer.Stop();
+                gameTimer.Enabled = false;
                 winner = "Player 1 wins!";
                 loser = "Player 2 loses!";
             }
@@ -763,6 +828,49 @@ namespace TankShowdown
                 bulletDirection.Add("left");
             }
         }
+
+        public void InitializeGame()
+        {
+
+            p1Lives = 3;
+            p2Lives = 3;
+            player1Cooldown = 0;
+            player2Cooldown = 0;
+            borderTime = 5000;
+            powerUpTime = 100;
+
+            powerUp1 = "none";
+            powerUp2 = "none";
+            player1Direction = "right";
+            player2Direction = "left";
+            winner = "";
+            loser = "";
+
+            player1.X = 50;
+            player1.Y = 650;
+            player2.X = 650;
+            player2.Y = 150;
+            player1Cannon.X = 70;
+            player1Cannon.Y = 655;
+            player2Cannon.X = 640;
+            player2Cannon.Y = 155;
+
+            Rectangle border = new Rectangle(0, 100, 700, 600);
+
+            bulletSize.Clear();
+            bulletSpeed.Clear();
+            bullets.Clear();
+            damagePowerUp.Clear();
+            speedPowerUp.Clear();
+            bulletDirection.Clear();
+            maze.Clear();
+            damageTime.Clear();
+            speedTime.Clear();
+
+            DrawMap1();
+            powerUpWatch.Start();
+            gameTimer.Enabled = true;
+        }
         public void DetermineBulletDirection1()
         {
             //Determine what direction the bullet should be shot for player 2.
@@ -786,6 +894,12 @@ namespace TankShowdown
         public void RemoveBullet()
         {
             
+        }
+
+        private void TankShowdown_Load(object sender, EventArgs e)
+        {
+            titleLabel.Text = "Tank Showdown";
+            Refresh();
         }
     }
 }

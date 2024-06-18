@@ -107,5 +107,8 @@
   <ItemGroup>
     <None Include="Resources\skull-crossbones-skeleton-death-svg-png-icon-download-12-min.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tank_Showdown_transparent-removebg-preview.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
