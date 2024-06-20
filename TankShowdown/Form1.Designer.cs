@@ -39,7 +39,6 @@
             this.p1Cooldown = new System.Windows.Forms.Label();
             this.p2Cooldown = new System.Windows.Forms.Label();
             this.borderCount = new System.Windows.Forms.Label();
-            this.titleLabel = new System.Windows.Forms.Label();
             this.logoBox = new System.Windows.Forms.PictureBox();
             this.p2Label = new System.Windows.Forms.Label();
             this.p2Control = new System.Windows.Forms.Label();
@@ -47,6 +46,9 @@
             this.p1Control = new System.Windows.Forms.Label();
             this.startLabel = new System.Windows.Forms.Label();
             this.infoLabel = new System.Windows.Forms.Label();
+            this.titleLabel = new System.Windows.Forms.Label();
+            this.winnerLabel = new System.Windows.Forms.Label();
+            this.loserLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.p1L1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1L3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1L2)).BeginInit();
@@ -149,15 +151,6 @@
             this.borderCount.Size = new System.Drawing.Size(206, 28);
             this.borderCount.TabIndex = 8;
             // 
-            // titleLabel
-            // 
-            this.titleLabel.AutoSize = true;
-            this.titleLabel.BackColor = System.Drawing.Color.Transparent;
-            this.titleLabel.Location = new System.Drawing.Point(230, 112);
-            this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(0, 34);
-            this.titleLabel.TabIndex = 9;
-            // 
             // logoBox
             // 
             this.logoBox.BackColor = System.Drawing.Color.Transparent;
@@ -210,23 +203,51 @@
             // 
             // startLabel
             // 
-            this.startLabel.AutoSize = true;
             this.startLabel.BackColor = System.Drawing.Color.Transparent;
             this.startLabel.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startLabel.Location = new System.Drawing.Point(233, 459);
+            this.startLabel.Location = new System.Drawing.Point(234, 442);
             this.startLabel.Name = "startLabel";
-            this.startLabel.Size = new System.Drawing.Size(0, 18);
+            this.startLabel.Size = new System.Drawing.Size(271, 64);
             this.startLabel.TabIndex = 15;
+            this.startLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // infoLabel
             // 
-            this.infoLabel.AutoSize = true;
             this.infoLabel.BackColor = System.Drawing.Color.Transparent;
             this.infoLabel.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoLabel.Location = new System.Drawing.Point(233, 477);
+            this.infoLabel.Location = new System.Drawing.Point(197, 506);
             this.infoLabel.Name = "infoLabel";
-            this.infoLabel.Size = new System.Drawing.Size(0, 18);
+            this.infoLabel.Size = new System.Drawing.Size(345, 99);
             this.infoLabel.TabIndex = 16;
+            this.infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // titleLabel
+            // 
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Location = new System.Drawing.Point(230, 104);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(0, 34);
+            this.titleLabel.TabIndex = 17;
+            // 
+            // winnerLabel
+            // 
+            this.winnerLabel.Font = new System.Drawing.Font("Stencil", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.winnerLabel.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.winnerLabel.Location = new System.Drawing.Point(40, 624);
+            this.winnerLabel.Name = "winnerLabel";
+            this.winnerLabel.Size = new System.Drawing.Size(183, 48);
+            this.winnerLabel.TabIndex = 18;
+            this.winnerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // loserLabel
+            // 
+            this.loserLabel.Font = new System.Drawing.Font("Stencil", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loserLabel.ForeColor = System.Drawing.Color.Red;
+            this.loserLabel.Location = new System.Drawing.Point(509, 626);
+            this.loserLabel.Name = "loserLabel";
+            this.loserLabel.Size = new System.Drawing.Size(181, 46);
+            this.loserLabel.TabIndex = 19;
+            this.loserLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // TankShowdown
             // 
@@ -234,6 +255,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(700, 700);
+            this.Controls.Add(this.loserLabel);
+            this.Controls.Add(this.winnerLabel);
+            this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.infoLabel);
             this.Controls.Add(this.startLabel);
             this.Controls.Add(this.p1Control);
@@ -241,7 +265,6 @@
             this.Controls.Add(this.p2Control);
             this.Controls.Add(this.p2Label);
             this.Controls.Add(this.logoBox);
-            this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.borderCount);
             this.Controls.Add(this.p2Cooldown);
             this.Controls.Add(this.p1Cooldown);
@@ -254,10 +277,10 @@
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Stencil", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Lime;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(10, 8, 10, 8);
             this.Name = "TankShowdown";
-            this.Load += new System.EventHandler(this.TankShowdown_Load);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.TankShowdown_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TankShowdown_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TankShowdown_KeyUp);
@@ -285,7 +308,6 @@
         private System.Windows.Forms.Label p1Cooldown;
         private System.Windows.Forms.Label p2Cooldown;
         private System.Windows.Forms.Label borderCount;
-        private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.PictureBox logoBox;
         private System.Windows.Forms.Label p2Label;
         private System.Windows.Forms.Label p2Control;
@@ -293,6 +315,9 @@
         private System.Windows.Forms.Label p1Control;
         private System.Windows.Forms.Label startLabel;
         private System.Windows.Forms.Label infoLabel;
+        private System.Windows.Forms.Label titleLabel;
+        private System.Windows.Forms.Label winnerLabel;
+        private System.Windows.Forms.Label loserLabel;
     }
 }
 

@@ -71,12 +71,58 @@ namespace TankShowdown.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Exoplosion {
+            get {
+                return ResourceManager.GetStream("Exoplosion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap lightning_png_161_min {
+        internal static System.Drawing.Bitmap gie5B4z7T__1_ {
             get {
-                object obj = ResourceManager.GetObject("lightning_png_161_min", resourceCulture);
+                object obj = ResourceManager.GetObject("gie5B4z7T__1_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap lightning_png_161_min__1_ {
+            get {
+                object obj = ResourceManager.GetObject("lightning_png_161_min__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream mixkit_game_level_completed_2059 {
+            get {
+                return ResourceManager.GetStream("mixkit_game_level_completed_2059", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream mixkit_game_whip_shot_1512__1_ {
+            get {
+                return ResourceManager.GetStream("mixkit_game_whip_shot_1512__1_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream pickup_sound_82314 {
+            get {
+                return ResourceManager.GetStream("pickup_sound_82314", resourceCulture);
             }
         }
         
@@ -86,16 +132,6 @@ namespace TankShowdown.Properties {
         internal static System.Drawing.Bitmap red_heart_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("red_heart_removebg_preview", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap skull_crossbones_skeleton_death_svg_png_icon_download_12_min {
-            get {
-                object obj = ResourceManager.GetObject("skull_crossbones_skeleton_death_svg_png_icon_download_12_min", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

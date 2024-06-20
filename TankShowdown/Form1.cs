@@ -14,6 +14,7 @@ namespace TankShowdown
 {
     public partial class TankShowdown : Form
     {
+        //Make global variables.
         bool leftPressed = false;
         bool rightPressed = false;
         bool upPressed = false;
@@ -26,13 +27,12 @@ namespace TankShowdown
         bool rPressed = false;
 
         int playerSpeed = 6;
-        int player1Cooldown = 0;
-        int player2Cooldown = 0;
-        int map = 1;
-        int powerUpTime = 100;
-        int p1Lives = 3;
-        int p2Lives = 3;
-        int borderTime = 5000;
+        int player1Cooldown;
+        int player2Cooldown;
+        int powerUpTime;
+        int p1Lives;
+        int p2Lives;
+        int borderTime;
 
         string player1Direction = "right";
         string player2Direction = "left";
@@ -40,7 +40,6 @@ namespace TankShowdown
         string powerUp2 = "none";
         string winner;
         string loser;
-
 
         Rectangle player1 = new Rectangle(50, 650, 20, 20);
         Rectangle player2 = new Rectangle(650, 150, 20, 20);
@@ -68,29 +67,37 @@ namespace TankShowdown
 
         Image redHeart = Properties.Resources.red_heart_removebg_preview;
         Image blueHeart = Properties.Resources.blue_heart_removebg_preview;
+        Image lightning = Properties.Resources.lightning_png_161_min__1_;
+        Image gun = Properties.Resources.gie5B4z7T__1_;
+
+        SoundPlayer startSound = new SoundPlayer(Properties.Resources.mixkit_game_level_completed_2059);
+        SoundPlayer explosionSound = new SoundPlayer(Properties.Resources.Exoplosion);
+        SoundPlayer shootSound = new SoundPlayer(Properties.Resources.mixkit_game_whip_shot_1512__1_);
+        SoundPlayer pickUp = new SoundPlayer(Properties.Resources.pickup_sound_82314);
 
         Stopwatch powerUpWatch = new Stopwatch();
-
         Random randGen = new Random();
 
         public TankShowdown()
         {
-
             InitializeComponent();
-            titleLabel.Text = "Tank Showdown";
-            Refresh();
         }
 
         private void TankShowdown_Paint(object sender, PaintEventArgs e)
         {
+            #region StartScreen
+            //Only show start screen.
             if (gameTimer.Enabled == false)
             {
+                infoLabel.Text = "Orange cube = Double Damage powerup\nYellow cube = Speedy Bullet powerup\nOnly body hits";
                 titleLabel.Text = "Tank Showdown";
                 p1Label.Text = "Player 1";
                 p2Label.Text = "Player 2";
                 p2Control.Text = "Arrows to move, L to shoot";
                 p1Control.Text = "W, A, S, D to move, R to shoot";
                 startLabel.Text = "Press space to start, ESC to exit";
+                winnerLabel.Text = $"{winner}";
+                loserLabel.Text = $"{loser}";
 
                 p1L1.Visible = false;
                 p1L2.Visible = false;
@@ -109,11 +116,16 @@ namespace TankShowdown
                 p2Control.Visible = true;
                 startLabel.Visible = true;
                 titleLabel.Visible = true;
+                winnerLabel.Visible = true;
+                loserLabel.Visible = true;
 
                 logoBox.BackgroundImage = Properties.Resources.Tank_Showdown_transparent_removebg_preview;
             }
+            #endregion
+            #region GameScreen
             else
             {
+                //Show the game screen and make start screen disapear.
                 p1L1.Visible = true;
                 p1L2.Visible = true;
                 p1L3.Visible = true;
@@ -131,11 +143,12 @@ namespace TankShowdown
                 p2Control.Visible = false;
                 startLabel.Visible = false;
                 titleLabel.Visible = false;
+                winnerLabel.Visible = false;
+                loserLabel.Visible = false;
 
                 p2Cooldown.Text = $"{player2Cooldown}";
                 p1Cooldown.Text = $"{player1Cooldown}";
                 borderCount.Text = $"Border closing in... {borderTime}";
-                
 
                 logoBox.BackgroundImage = null;
 
@@ -156,11 +169,13 @@ namespace TankShowdown
                 }
                 for (int i = 0; i < damagePowerUp.Count; i++)
                 {
-                    e.Graphics.FillRectangle(damageBrush, damagePowerUp[i]);
+                    e.Graphics.DrawImage(gun, damagePowerUp[i]);
+                    //e.Graphics.FillRectangle(damageBrush, damagePowerUp[i]);
                 }
                 for (int i = 0; i < speedPowerUp.Count; i++)
                 {
-                    e.Graphics.FillRectangle(speedBrush, speedPowerUp[i]);
+                    //e.Graphics.FillRectangle(speedBrush, speedPowerUp[i]);
+                    e.Graphics.DrawImage(lightning, speedPowerUp[i]);
                 }
 
                 if (p1Lives == 3)
@@ -213,6 +228,7 @@ namespace TankShowdown
                     p2L3.BackgroundImage = null;
                 }
             }
+            #endregion
         }
 
         private void TankShowdown_KeyDown(object sender, KeyEventArgs e)
@@ -303,8 +319,8 @@ namespace TankShowdown
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            //Randomly spawn speedy bullet powerups.
-            
+            #region SpawnPowerUp
+            //Randomly spawn powerups.
             if (powerUpWatch.ElapsedMilliseconds > 5000)
             {
                 Rectangle speedBullet = new Rectangle(randGen.Next(20, 680), randGen.Next(120, 680), 20, 20);
@@ -316,7 +332,7 @@ namespace TankShowdown
                     {
                         speedBullet.X = speedBullet.X + 35;
                         speedBullet.Y = speedBullet.Y + 35;
-                        
+
                     }
                     if (damageBullet.IntersectsWith(maze[i])) //Move powerup so it doesn't sit on wall.
                     {
@@ -329,8 +345,10 @@ namespace TankShowdown
                 speedTime.Add(250);
                 damageTime.Add(250);
                 powerUpWatch.Restart();
+                powerUpTime--;
             }
-
+            #endregion
+            #region DeletePowerUp
             //Remove powerUps after a certain amount of time.
             for (int i = 0; i < damageTime.Count; i++)
             {
@@ -350,7 +368,8 @@ namespace TankShowdown
                     speedPowerUp.RemoveAt(i);
                 }
             }
-
+            #endregion
+            #region GivePowerUp
             //Give players the double damage powerup if they pick it up.
             for (int i = 0; i < damagePowerUp.Count; i++)
             {
@@ -359,6 +378,7 @@ namespace TankShowdown
                     damagePowerUp.RemoveAt(i);
                     damageTime.RemoveAt(i);
                     powerUp1 = "damage";
+                    pickUp.Play();
                     break;
                 }
 
@@ -367,6 +387,7 @@ namespace TankShowdown
                     damagePowerUp.RemoveAt(i);
                     damageTime.RemoveAt(i);
                     powerUp2 = "damage";
+                    pickUp.Play();
                     break;
                 }
             }
@@ -378,6 +399,7 @@ namespace TankShowdown
                     speedPowerUp.RemoveAt(i);
                     speedTime.RemoveAt(i);
                     powerUp1 = "speed";
+                    pickUp.Play();
                     break;
                 }
 
@@ -386,12 +408,12 @@ namespace TankShowdown
                     speedPowerUp.RemoveAt(i);
                     speedTime.RemoveAt(i);
                     powerUp2 = "speed";
+                    pickUp.Play();
                     break;
                 }
             }
-            
-
-
+            #endregion
+            #region PlayerMovement
             //MOVE PLAYER 1
             if (wPressed == true && dPressed == false && aPressed == false)
             {
@@ -443,6 +465,8 @@ namespace TankShowdown
                 player2Direction = "right";
                 player2Cannon = new Rectangle(player2.X + 20, player2.Y + 5, 10, 10);
             }
+            #endregion
+            #region PlayerBoundaries
             //Make player 1 not able to go outside of boundaries.
             for (int i = 0; i < maze.Count; i++)
             {
@@ -494,7 +518,8 @@ namespace TankShowdown
                     }
                 }
             }
-
+            #endregion
+            #region BulletShooting
             //Add a bullet if player 1 shoots depending on their powerup.
             if (rPressed == true && player1Cooldown <= 0 && powerUp1 == "none")
             {
@@ -506,6 +531,7 @@ namespace TankShowdown
                 bulletSpeed.Add(12);
                 player1Cooldown = 100;
                 powerUp1 = "none";
+                shootSound.Play();
             }
             else if (rPressed == true && player1Cooldown <= 0 && powerUp1 == "speed")
             {
@@ -517,6 +543,7 @@ namespace TankShowdown
                 bulletSpeed.Add(18);
                 player1Cooldown = 100;
                 powerUp1 = "none";
+                shootSound.Play();
             }
             else if (rPressed == true && player1Cooldown <= 0 && powerUp1 == "damage")
             {
@@ -525,12 +552,12 @@ namespace TankShowdown
                     Rectangle bullet = new Rectangle(player1Cannon.X, player1Cannon.Y - 5, 0, 0);
                     bullets.Add(bullet);
                 }
-                else if (player1Direction == "left") 
+                else if (player1Direction == "left")
                 {
                     Rectangle bullet = new Rectangle(player1Cannon.X - 5, player1Cannon.Y, 0, 0);
                     bullets.Add(bullet);
                 }
-                else 
+                else
                 {
                     Rectangle bullet = new Rectangle(player1Cannon.X, player1Cannon.Y, 0, 0);
                     bullets.Add(bullet);
@@ -541,6 +568,7 @@ namespace TankShowdown
                 bulletSpeed.Add(8);
                 player1Cooldown = 100;
                 powerUp1 = "none";
+                shootSound.Play();
             }
 
             //Add a bullet if player 2 shoots depending on their powerup.
@@ -554,6 +582,7 @@ namespace TankShowdown
                 bulletSpeed.Add(12);
                 player2Cooldown = 100;
                 powerUp2 = "none";
+                shootSound.Play();
             }
             else if (lPressed == true && player2Cooldown <= 0 && powerUp2 == "speed")
             {
@@ -565,6 +594,7 @@ namespace TankShowdown
                 bulletSpeed.Add(18);
                 player2Cooldown = 100;
                 powerUp2 = "none";
+                shootSound.Play();
             }
             else if (lPressed == true && player2Cooldown <= 0 && powerUp2 == "damage")
             {
@@ -584,13 +614,12 @@ namespace TankShowdown
                     bullets.Add(bullet);
                 }
 
-                
-
                 DetermineBulletDirection2();
                 bulletSize.Add(20);
                 bulletSpeed.Add(8);
                 player2Cooldown = 100;
                 powerUp2 = "none";
+                shootSound.Play();
             }
 
             //Move bullets shot by players in approperiate directions.
@@ -617,6 +646,7 @@ namespace TankShowdown
                     bullets[i] = new Rectangle(move, bullets[i].Y, bulletSize[i], bulletSize[i]);
                 }
             }
+
             //Remove bullets if they collide with the maze.
             for (int i = 0; i < bullets.Count; i++)
             {
@@ -631,8 +661,19 @@ namespace TankShowdown
                         break;
                     }
                 }
+            }   
+            
+            //Reset cooldown for players.
+            if (player1Cooldown > 0)
+            {
+                player1Cooldown--;
             }
-
+            if (player2Cooldown > 0)
+            {
+                player2Cooldown--;
+            }
+            #endregion
+            #region RemoveLives
             //Check if players collide with bullets and remove lives and reset their position if they do.
             for (int i = 0; i < bullets.Count; i++)
             {
@@ -648,6 +689,8 @@ namespace TankShowdown
                     bulletSpeed.RemoveAt(i);
                     player1Cannon.X = 70;
                     player1Cannon.Y = 655;
+
+                    explosionSound.Play();
                     break;
                 }
                 else if (player1.IntersectsWith(bullets[i]) && bulletSpeed[i] == 18)
@@ -662,6 +705,8 @@ namespace TankShowdown
                     bulletSpeed.RemoveAt(i);
                     player1Cannon.X = 70;
                     player1Cannon.Y = 655;
+
+                    explosionSound.Play();
                     break;
                 }
                 else if (player1.IntersectsWith(bullets[i]) && bulletSpeed[i] == 8)
@@ -676,6 +721,8 @@ namespace TankShowdown
                     bulletSpeed.RemoveAt(i);
                     player1Cannon.X = 70;
                     player1Cannon.Y = 655;
+
+                    explosionSound.Play();
                     break;
                 }
                 if (player2.IntersectsWith(bullets[i]) && bulletSpeed[i] == 12)
@@ -690,6 +737,8 @@ namespace TankShowdown
                     bulletSpeed.RemoveAt(i);
                     player2Cannon.X = 640;
                     player2Cannon.Y = 155;
+
+                    explosionSound.Play();
                     break;
                 }
                 else if (player2.IntersectsWith(bullets[i]) && bulletSpeed[i] == 18)
@@ -704,6 +753,8 @@ namespace TankShowdown
                     bulletSpeed.RemoveAt(i);
                     player2Cannon.X = 640;
                     player2Cannon.Y = 155;
+
+                    explosionSound.Play();
                     break;
                 }
                 else if (player2.IntersectsWith(bullets[i]) && bulletSpeed[i] == 8)
@@ -718,10 +769,30 @@ namespace TankShowdown
                     bulletSpeed.RemoveAt(i);
                     player2Cannon.X = 640;
                     player2Cannon.Y = 155;
+
+                    explosionSound.Play();
                     break;
                 }
             }
+            if (player1.IntersectsWith(player2))
+            {
+                p1Lives--;
+                p2Lives--;
 
+                player1.X = 50;
+                player1.Y = 650;
+                player2.X = 650;
+                player2.Y = 150;
+
+                player1Cannon.X = 70;
+                player1Cannon.Y = 655;
+                player2Cannon.X = 640;
+                player2Cannon.Y = 155;
+
+                explosionSound.Play();
+            }
+            #endregion
+            #region EndGame
             //End game if a player reaches 0 lives.
             if (p1Lives <= 0)
             {
@@ -735,7 +806,8 @@ namespace TankShowdown
                 winner = "Player 1 wins!";
                 loser = "Player 2 loses!";
             }
-
+            #endregion
+            #region Border
             //Close the border once it is time.
             if (borderTime > 0)
             {
@@ -758,24 +830,9 @@ namespace TankShowdown
             {
                 p2Lives = 0;
             }
-
-            //Reset cooldown for players.
-            if (player1Cooldown > 0)
-            {
-                player1Cooldown--;
-            }
-            if (player2Cooldown > 0)
-            {
-                player2Cooldown--;
-            }
-            powerUpTime--;
-
-
+            #endregion
             Refresh();
-
-
         }
-
         public void DrawMap1()
         {
             //Draw the map.
@@ -828,49 +885,6 @@ namespace TankShowdown
                 bulletDirection.Add("left");
             }
         }
-
-        public void InitializeGame()
-        {
-
-            p1Lives = 3;
-            p2Lives = 3;
-            player1Cooldown = 0;
-            player2Cooldown = 0;
-            borderTime = 5000;
-            powerUpTime = 100;
-
-            powerUp1 = "none";
-            powerUp2 = "none";
-            player1Direction = "right";
-            player2Direction = "left";
-            winner = "";
-            loser = "";
-
-            player1.X = 50;
-            player1.Y = 650;
-            player2.X = 650;
-            player2.Y = 150;
-            player1Cannon.X = 70;
-            player1Cannon.Y = 655;
-            player2Cannon.X = 640;
-            player2Cannon.Y = 155;
-
-            Rectangle border = new Rectangle(0, 100, 700, 600);
-
-            bulletSize.Clear();
-            bulletSpeed.Clear();
-            bullets.Clear();
-            damagePowerUp.Clear();
-            speedPowerUp.Clear();
-            bulletDirection.Clear();
-            maze.Clear();
-            damageTime.Clear();
-            speedTime.Clear();
-
-            DrawMap1();
-            powerUpWatch.Start();
-            gameTimer.Enabled = true;
-        }
         public void DetermineBulletDirection1()
         {
             //Determine what direction the bullet should be shot for player 2.
@@ -891,15 +905,49 @@ namespace TankShowdown
                 bulletDirection.Add("left");
             }
         }
-        public void RemoveBullet()
+        public void InitializeGame()
         {
-            
-        }
+            p1Lives = 3;
+            p2Lives = 3;
+            player1Cooldown = 0;
+            player2Cooldown = 0;
+            borderTime = 2000;
+            powerUpTime = 100;
 
-        private void TankShowdown_Load(object sender, EventArgs e)
-        {
-            titleLabel.Text = "Tank Showdown";
-            Refresh();
+            powerUp1 = "none";
+            powerUp2 = "none";
+            player1Direction = "right";
+            player2Direction = "left";
+            winner = "";
+            loser = "";
+
+            player1.X = 50;
+            player1.Y = 650;
+            player2.X = 650;
+            player2.Y = 150;
+            player1Cannon.X = 70;
+            player1Cannon.Y = 655;
+            player2Cannon.X = 640;
+            player2Cannon.Y = 155;
+            border.X = 0;
+            border.Y = 100;
+            border.Width = 700;
+            border.Height = 600;
+
+            bulletSize.Clear();
+            bulletSpeed.Clear();
+            bullets.Clear();
+            damagePowerUp.Clear();
+            speedPowerUp.Clear();
+            bulletDirection.Clear();
+            maze.Clear();
+            damageTime.Clear();
+            speedTime.Clear();
+
+            DrawMap1();
+            powerUpWatch.Start();
+            startSound.Play();
+            gameTimer.Enabled = true;
         }
     }
 }

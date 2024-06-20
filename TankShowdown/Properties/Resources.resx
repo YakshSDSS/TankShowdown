@@ -121,14 +121,26 @@
   <data name="blue_heart_removebg_preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blue_heart-removebg-preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="lightning_png_161_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\lightning-png-161-min.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Exoplosion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Exoplosion.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="gie5B4z7T__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gie5B4z7T (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lightning_png_161_min__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lightning-png-161-min (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mixkit_game_level_completed_2059" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mixkit-game-level-completed-2059.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mixkit_game_whip_shot_1512__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mixkit-game-whip-shot-1512 (1).wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="pickup_sound_82314" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pickup-sound-82314.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="red_heart_removebg_preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\red_heart-removebg-preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="skull_crossbones_skeleton_death_svg_png_icon_download_12_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\skull-crossbones-skeleton-death-svg-png-icon-download-12-min.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Tank_Showdown_transparent_removebg_preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Tank_Showdown_transparent-removebg-preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
