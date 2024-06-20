@@ -89,7 +89,7 @@ namespace TankShowdown
             //Only show start screen.
             if (gameTimer.Enabled == false)
             {
-                infoLabel.Text = "Orange cube = Double Damage powerup\nYellow cube = Speedy Bullet powerup\nOnly body hits";
+                infoLabel.Text = "Gun = Double Damage powerup\nLightning = Speedy Bullet powerup\nOnly body hits";
                 titleLabel.Text = "Tank Showdown";
                 p1Label.Text = "Player 1";
                 p2Label.Text = "Player 2";
